@@ -1,52 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiliTh的草莓蛋糕</title>
+    <title>Lilith的草莓蛋糕</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div>
-    <h1>Github网页编辑</h1>
-    <p>通过github来实现网页的创建</p>
-    <a href="https://github.com/sorrymaker486" target="_blank">
-        我的GitHub主页
-    </a>
-    <br>
+    <header>
+      <div class="navbar">
+        <h1>Lilith的蛋糕店</h1>
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="搜索...">
+          <button id="searchBtn">🔍</button>
+        </div>
+        <nav>
+          <a href="#home">主页</a>
+          <a href="#about">关于我</a>
+        </nav>
+      </div>
+    </header>
 
-    <img src="background.jpg" alt="示例图片" width="600">
+    <main>
+      <section>
+        <h1>目前计划</h1>
+        <ul>
+          <li>完善导航栏</li>
+          <li>持续美化网页</li>
+          <li>完善仓库功能</li>
+        </ul>
+      </section>
 
-    <ul>
-        <p>学习目标</p>
-        <li>学会写html</li>
-        <li>发布github网站</li>
-        <li>掌握基本排版</li>
-    </ul>
-    </div>
-  <div class="cards-container">
-    <div class="card">
-        <h2>html和css的学习</h2>
-        <p>现在正在css的网页布局优化</p>
-    </div>
+      <section class="cards-container">
+        <div class="card">
+          <h2>没有什么意义的小卡片</h2>
+          <p>说不定会加入些什么呢</p>
+        </div>
 
-    <div class="card">
-        <img src="lilyth.png" alt="示例图片">
-        <h2>这是第一个项目</h2>
-        <p>这是GitHub中的第一个项目</p>
-        <a href="https://github.com/sorrymaker486" class="button" target="_blank">
-            查看项目
-        </a>
-    </div>
-    
-    <div class="card">
-        <img src="lilyth saying.png" alt="示例图片">
-        <h2>这是第二个项目</h2>
-        <p>这是GitHub中的第二个项目</p>
-        <a href="https://github.com/sorrymaker486" class="button" target="_blank">
-            查看项目
-        </a>
-    </div>
-  </div>
+        <div class="card">
+          <img src="lilyth.png" alt="示例图片">
+          <h2>Lilith的小窗台</h2>
+          <p>预计内置训练完成的yolo模型</p>
+          <a href="https://github.com/sorrymaker486" class="button" target="_blank">点击下载</a>
+        </div>
+
+        <div class="card">
+          <img src="lilyth-saying.png" alt="示例图片">
+          <h2>Lilith小名言</h2>
+          <p>这里是html学习记录文件哟</p>
+          <a href="https://github.com/sorrymaker486" class="button" target="_blank">点击获取</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Lilith的蛋糕店 | 我的 GitHub: <a href="https://github.com/sorrymaker486" target="_blank">sorrymaker486</a></p>
+        <p>联系邮箱：bokuririri@foxmail.com</p>
+    </footer>
+
+<script>
+// 滚动隐藏导航栏
+let lastScroll = 0;
+const header = document.querySelector('header');
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    if (currentScroll > lastScroll) {
+        header.classList.add('hide');
+    } else {
+        header.classList.remove('hide');
+    }
+    lastScroll = currentScroll;
+});
+
+// 搜索功能（用hidden class避免布局bug）
+const searchBtn = document.getElementById('searchBtn');
+const searchInput = document.getElementById('searchInput');
+const cards = document.querySelectorAll('.card');
+
+searchBtn.addEventListener('click', () => {
+    const keyword = searchInput.value.toLowerCase().trim();
+    let hasResult = false;
+
+    cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(keyword)) {
+            card.classList.remove('hidden');
+            hasResult = true;
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+
+    if (!hasResult) {
+        alert('没有找到相关内容');
+    }
+});
+
+// 回车也触发搜索
+searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        searchBtn.click();
+    }
+});
+
+// 输入框清空时，恢复所有卡片
+searchInput.addEventListener('input', () => {
+    if (searchInput.value.trim() === '') {
+        cards.forEach(card => card.classList.remove('hidden'));
+    }
+});
+</script>
+
+<style>
+/* 简单修复 hide 效果 */
+header.hide {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+/* 隐藏卡片专用class */
+.card.hidden {
+    display: none !important;
+}
+</style>
+
 </body>
 </html>
