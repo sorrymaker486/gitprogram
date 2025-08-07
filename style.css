@@ -51,6 +51,7 @@ header.hide {
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
+    overflow-x: auto;
 }
 
 .island-navbar:hover {
@@ -222,7 +223,6 @@ section {
         gap: 12px;
         padding: 14px 16px;
         max-width: 95%;
-        overflow-x: auto;
     }
 
     .island-navbar h1 {
