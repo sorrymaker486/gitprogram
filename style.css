@@ -8,6 +8,10 @@
 }
 
 /* 基础样式 */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -15,7 +19,7 @@ body {
     background: url("background.jpg") center/cover no-repeat;
     color: var(--text-color);
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-    padding-top: 100px; /* 避免被悬浮导航遮挡 */
+    padding-top: 100px; /* 避免悬浮导航遮挡 */
 }
 
 /* 悬浮导航栏 */
@@ -26,7 +30,7 @@ header {
     transform: translateX(-50%);
     z-index: 999;
     width: fit-content;
-    max-width: 90%;
+    max-width: 95%;
     transition: transform 0.3s ease;
 }
 
@@ -37,9 +41,11 @@ header.hide {
 /* 灵动岛风格导航 */
 .island-navbar {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 30px;
-    padding: 12px 30px;
+    justify-content: center;
+    gap: 16px;
+    padding: 12px 24px;
     border-radius: 50px;
     background: rgba(15, 15, 30, 0.7);
     backdrop-filter: blur(10px);
@@ -50,7 +56,7 @@ header.hide {
 /* logo */
 .island-navbar h1 {
     margin: 0;
-    font-size: 20px;
+    font-size: 18px;
     color: var(--main-color);
     white-space: nowrap;
 }
@@ -58,15 +64,18 @@ header.hide {
 /* 导航链接 */
 .island-navbar nav {
     display: flex;
-    gap: 20px;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .island-navbar nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    padding: 8px 16px;
+    padding: 6px 12px;
     border-radius: 999px;
+    font-size: 14px;
     transition: background-color 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
 }
 
@@ -81,6 +90,7 @@ header.hide {
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-wrap: nowrap;
 }
 
 .search-bar input {
@@ -88,14 +98,15 @@ header.hide {
     border-radius: 999px;
     border: none;
     outline: none;
-    font-size: 14px;
+    font-size: 13px;
+    max-width: 160px;
 }
 
 .search-bar input::placeholder {
-  color: rgba(255, 64, 128, 0.171);
-  font-style: italic;
-  letter-spacing: 0.5px;
-  font-size: 12px;
+    color: rgba(255, 255, 255, 0.3);
+    font-style: italic;
+    font-size: 12px;
+    letter-spacing: 0.3px;
 }
 
 .search-bar button {
@@ -104,6 +115,7 @@ header.hide {
     color: white;
     border: none;
     border-radius: 999px;
+    font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -196,52 +208,46 @@ section {
     display: none !important;
 }
 
-/* 响应式 */
+/* 响应式（iPhone 15 Pro 基准） */
 @media (max-width: 430px) {
-  .navbar {
-    flex-direction: row;
-    flex-wrap: wrap;  /* 允许折行 */
-    justify-content: space-between;
-    align-items: center;
-    height: auto;
-    padding: 10px 20px;
-    gap: 10px;
-  }
+    .island-navbar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 14px 16px;
+        border-radius: 30px;
+        max-width: 95%;
+    }
 
-  .navbar h1 {
-    font-size: 16px;
-    margin: 0;
-    flex: 1 1 auto;
-  }
+    .island-navbar h1 {
+        font-size: 16px;
+        text-align: center;
+    }
 
-  nav {
-    display: flex;
-    gap: 6px;
-    flex: 0 0 auto;
-  }
+    .island-navbar nav {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+    }
 
-  nav a {
-    font-size: 14px;
-    padding: 4px 8px;
-  }
+    .island-navbar nav a {
+        font-size: 13px;
+        padding: 4px 10px;
+    }
 
-  .search-bar {
-    display: flex;
-    gap: 6px;
-    flex: 1 1 100%;
-    justify-content: center;
-  }
+    .search-bar {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
 
-  .search-bar input {
-    font-size: 14px;
-    padding: 6px 10px;
-    border-radius: 20px;
-    width: 60%;
-  }
+    .search-bar input {
+        font-size: 12px;
+        padding: 6px 10px;
+        max-width: 130px;
+    }
 
-  .search-bar button {
-    font-size: 14px;
-    padding: 6px 12px;
-    border-radius: 20px;
-  }
+    .search-bar button {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
 }
