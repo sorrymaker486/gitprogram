@@ -70,6 +70,9 @@ header.hide {
 .island-navbar nav {
     display: flex;
     gap: 12px;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .island-navbar nav a {
@@ -214,10 +217,11 @@ section {
 /* 响应式（iPhone 15 Pro 基准） */
 @media (max-width: 430px) {
     .island-navbar {
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         gap: 12px;
         padding: 14px 16px;
         max-width: 95%;
+        overflow-x: auto;
     }
 
     .island-navbar h1 {
@@ -229,7 +233,7 @@ section {
     .island-navbar nav {
         justify-content: center;
         gap: 10px;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
     }
 
     .island-navbar nav a {
