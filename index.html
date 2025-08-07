@@ -1,94 +1,100 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lilith的草莓蛋糕</title>
+    <title>LiliTh的草莓蛋糕</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-      <div class="navbar">
+      <div class="island-navbar">
         <h1>Lilith的蛋糕店</h1>
-        <div class="search-bar">
-          <input type="text" id="searchInput" placeholder="搜索...">
-          <button id="searchBtn">🔍</button>
-        </div>
         <nav>
           <a href="#home">主页</a>
           <a href="#about">关于我</a>
         </nav>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="搜索...">
+        <button id="searchBtn">🔍</button>
+      </div>
       </div>
     </header>
 
+
     <main>
-      <section>
+      <ul>
         <h1>目前计划</h1>
-        <ul>
-          <li>完善导航栏</li>
-          <li>持续美化网页</li>
-          <li>完善仓库功能</li>
-        </ul>
-      </section>
+        <li>完善导航栏</li>
+        <li>持续美化网页</li>
+        <li>完善仓库功能</li>
+      </ul>
+      <main class="cards-container">
+      <div class="card1">
+        <h2>没有什么意义的小卡片</h2>
+        <p>说不定会加入些什么呢</p>
+      </div>
 
-      <section class="cards-container">
-        <div class="card">
-          <h2>没有什么意义的小卡片</h2>
-          <p>说不定会加入些什么呢</p>
-        </div>
-
-        <div class="card">
-          <img src="lilyth.png" alt="示例图片">
-          <h2>Lilith的小窗台</h2>
-          <p>预计内置训练完成的yolo模型</p>
-          <a href="https://github.com/sorrymaker486" class="button" target="_blank">点击下载</a>
-        </div>
-
-        <div class="card">
-          <img src="lilyth-saying.png" alt="示例图片">
-          <h2>Lilith小名言</h2>
-          <p>这里是html学习记录文件哟</p>
-          <a href="https://github.com/sorrymaker486" class="button" target="_blank">点击获取</a>
-        </div>
-      </section>
+      <div class="card">
+        <img src="lilyth.png" alt="示例图片">
+        <h2>Lilith的小窗台</h2>
+        <p>预计内置训练完成的yolo模型</p>
+        <a href="https://github.com/sorrymaker486" class="button" target="_blank">
+            点击下载
+        </a>
+      </div>
+    
+      <div class="card">
+        <img src="lilyth-saying.png" alt="示例图片">
+        <h2>Lilith小名言</h2>
+        <p>这里是html学习记录文件哟</p>
+        <a href="https://github.com/sorrymaker486" class="button" target="_blank">
+            点击获取
+        </a>
+      </div>
     </main>
+
+    <br>
+    <br>
 
     <footer>
         <p>© 2025 Lilith的蛋糕店 | 我的 GitHub: <a href="https://github.com/sorrymaker486" target="_blank">sorrymaker486</a></p>
         <p>联系邮箱：bokuririri@foxmail.com</p>
     </footer>
+</body>
+</html>
 
 <script>
-// 滚动隐藏导航栏
-let lastScroll = 0;
-const header = document.querySelector('header');
+  let lastScroll = 0;
+  const header = document.querySelector('header');
 
-window.addEventListener('scroll', () => {
+  window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
+
     if (currentScroll > lastScroll) {
-        header.classList.add('hide');
+      // 向下滚动 - 隐藏
+      header.classList.add('hide');
     } else {
-        header.classList.remove('hide');
+      // 向上滚动 - 显示
+      header.classList.remove('hide');
     }
+
     lastScroll = currentScroll;
-});
+  }
+  );
 
-// 搜索功能（用hidden class避免布局bug）
-const searchBtn = document.getElementById('searchBtn');
-const searchInput = document.getElementById('searchInput');
-const cards = document.querySelectorAll('.card');
-
-searchBtn.addEventListener('click', () => {
-    const keyword = searchInput.value.toLowerCase().trim();
+  document.getElementById('searchBtn').addEventListener('click', function() {
+    const keyword = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.card');
     let hasResult = false;
 
     cards.forEach(card => {
         const text = card.innerText.toLowerCase();
         if (text.includes(keyword)) {
-            card.classList.remove('hidden');
+            card.style.display = 'flex';
             hasResult = true;
         } else {
-            card.classList.add('hidden');
+            card.style.display = 'none';
         }
     });
 
@@ -97,33 +103,12 @@ searchBtn.addEventListener('click', () => {
     }
 });
 
-// 回车也触发搜索
-searchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        searchBtn.click();
-    }
-});
+// 回车也能触发
+  document.getElementById('searchInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+          document.getElementById('searchBtn').click();
+      }
+}
+);
 
-// 输入框清空时，恢复所有卡片
-searchInput.addEventListener('input', () => {
-    if (searchInput.value.trim() === '') {
-        cards.forEach(card => card.classList.remove('hidden'));
-    }
-});
 </script>
-
-<style>
-/* 简单修复 hide 效果 */
-header.hide {
-    transform: translateY(-100%);
-    transition: transform 0.3s ease;
-}
-
-/* 隐藏卡片专用class */
-.card.hidden {
-    display: none !important;
-}
-</style>
-
-</body>
-</html>

@@ -7,7 +7,7 @@
     --highlight-color: rgba(255, 64, 129, 0.3);
 }
 
-/* 基础 */
+/* 基础样式 */
 body {
     margin: 0;
     padding: 0;
@@ -15,58 +15,62 @@ body {
     background: url("background.jpg") center/cover no-repeat;
     color: var(--text-color);
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    padding-top: 100px; /* 避免被悬浮导航遮挡 */
 }
 
-/* header 样式 */
+/* 悬浮导航栏 */
 header {
-    margin: 0;
-    padding: 0;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-    background: linear-gradient(to bottom, rgba(10, 10, 30, 0.85), rgba(10, 10, 30, 0.6));
-    backdrop-filter: blur(6px);
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    width: fit-content;
+    max-width: 90%;
     transition: transform 0.3s ease;
 }
 
 header.hide {
-    transform: translateY(-100%);
+    transform: translate(-50%, -100%);
 }
 
-.navbar {
-    width: 100%;
+/* 灵动岛风格导航 */
+.island-navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 40px;
-    height: 80px;
-    box-sizing: border-box;
+    gap: 30px;
+    padding: 12px 30px;
+    border-radius: 50px;
+    background: rgba(15, 15, 30, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
-.navbar h1 {
+/* logo */
+.island-navbar h1 {
     margin: 0;
-    font-size: 24px;
+    font-size: 20px;
     color: var(--main-color);
-    line-height: 80px;
+    white-space: nowrap;
 }
 
-nav {
+/* 导航链接 */
+.island-navbar nav {
     display: flex;
-    align-items: center;
+    gap: 20px;
 }
 
-nav a {
+.island-navbar nav a {
     color: white;
-    margin-left: 20px;
     text-decoration: none;
     font-weight: bold;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: background-color 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
 }
 
-nav a:hover {
+.island-navbar nav a:hover {
     background-color: rgba(255, 255, 255, 0.15);
     color: var(--accent-color);
     text-shadow: 0 0 6px rgba(255, 64, 129, 0.7);
@@ -80,19 +84,19 @@ nav a:hover {
 }
 
 .search-bar input {
-    padding: 6px 10px;
-    border-radius: 4px;
+    padding: 6px 12px;
+    border-radius: 999px;
     border: none;
     outline: none;
     font-size: 14px;
 }
 
 .search-bar button {
-    padding: 6px 10px;
+    padding: 6px 12px;
     background-color: var(--main-color);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 999px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -126,13 +130,11 @@ nav a:hover {
     text-align: center;
 }
 
-/* 单独 hover 效果 */
 .card:hover, .card1:hover {
     transform: translateY(-5px) scale(1.02);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
-/* 卡片图片 */
 .card img {
     width: 100%;
     border-radius: 8px;
@@ -173,10 +175,10 @@ footer {
 /* section */
 section {
     padding: 40px 20px;
-    text-align:left;
+    text-align: left;
 }
 
-/* 搜索高亮匹配效果（预留） */
+/* 搜索高亮匹配效果 */
 .card.highlight {
     box-shadow: 0 0 15px var(--main-color), 0 0 30px var(--highlight-color);
     border: 1px solid var(--main-color);
@@ -194,9 +196,20 @@ section {
         align-items: center;
     }
 
-    .navbar h1 {
-        font-size: 20px;
-        line-height: 60px;
+    .island-navbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .island-navbar h1 {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .island-navbar nav {
+        justify-content: center;
     }
 
     body {
