@@ -16,7 +16,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Segoe UI", sans-serif;
-    background: url("background.jpg") center/cover no-repeat;
+    background: url("img/background.jpg") center/cover no-repeat;
     color: var(--text-color);
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
     padding-top: 100px;
@@ -73,6 +73,7 @@ header.hide {
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
 }
 
 .island-navbar nav a {
@@ -221,7 +222,6 @@ section {
         gap: 12px;
         padding: 14px 16px;
         max-width: 95%;
-        overflow-x: auto;
     }
 
     .island-navbar h1 {
@@ -231,9 +231,11 @@ section {
     }
 
     .island-navbar nav {
+        flex-direction: row;
         justify-content: center;
         gap: 10px;
         flex-wrap: nowrap;
+        white-space: nowrap;
     }
 
     .island-navbar nav a {
