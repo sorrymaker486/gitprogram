@@ -222,6 +222,7 @@ section {
         gap: 12px;
         padding: 14px 16px;
         max-width: 95%;
+        overflow-x: auto;
     }
 
     .island-navbar h1 {
